@@ -231,25 +231,66 @@ footer {
   font-size: 0.9rem;
 }
 
-/* --- ADAPTACIÓN A CELULARES --- */
-@media (max-width: 650px) {
+/* ==========================================
+   8. MEDIA QUERIES (MÓVILES Y TABLETS)
+   ========================================== */
+@media screen and (max-width: 768px) {
+  header {
+    padding: 1rem 0.5rem;
+    background-color: #ffffff; /* Mantiene el fondo blanco superior */
+  }
+
+  header h1 {
+    font-size: 1.4rem;
+    color: #0a2540;
+  }
+
   nav ul {
     flex-direction: column;
-    gap: 4px;
+    gap: 5px;
   }
-  
+
   nav a {
     text-align: center;
-    background-color: #f1f5f9;
+    width: 100%;
+    padding: 10px;
+    background-color: #f1f5f9; /* Fondo claro para los botones inactivos */
+    color: #0a2540;            /* Texto oscuro legible */
     border-radius: 6px;
+  }
+
+  /* El botón de la página actual se mantiene azul fuerte */
+  nav a.activo {
+    background-color: #0d47a1 !important;
+    color: #ffffff !important;
   }
 
   main {
     width: 95%;
+    margin: 15px auto;
     padding: 18px;
   }
 
+  .galeria {
+    grid-template-columns: 1fr;
+  }
+
+  /* Ajuste para que la sección de contacto no se desforme */
   .contacto-flex {
     flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  header h1 {
+    font-size: 1.2rem;
+  }
+
+  h2 { font-size: 1.2rem; }
+  h3 { font-size: 1.05rem; }
+  h4 { font-size: 0.95rem; }
+
+  p, li {
+    font-size: 0.9rem;
   }
 }
