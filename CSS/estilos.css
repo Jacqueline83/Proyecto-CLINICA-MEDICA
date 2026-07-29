@@ -15,15 +15,26 @@
   padding: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: var(--fondo-gris);
   color: var(--texto);
   line-height: 1.6;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
 
 /* ==========================================
-   2. ENCABEZADO Y NAVEGACIÓN (Flexbox)
+   2. ENCABEZADO Y NAVEGACIÓN
    ========================================== */
 header {
   background-color: var(--azul-oscuro);
@@ -39,43 +50,41 @@ header h1 {
 
 nav ul {
   list-style: none;
-  display: flex; /* Flexbox para alineación horizontal */
+  display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 15px;
+  gap: 10px;
 }
 
 nav a {
   color: white;
   text-decoration: none;
   font-weight: bold;
-  padding: 8px 16px;
+  padding: 10px 16px;
   border-radius: 5px;
-  /* Transición suave para el cambio de color y elevación */
+  display: inline-block;
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-/* Efecto Hover en los botones del menú */
 nav a:hover {
   background-color: var(--azul-principal);
   transform: translateY(-2px);
 }
 
 /* ==========================================
-   3. CONTENEDOR PRINCIPAL (CUADRO ELEGANTE)
+   3. CONTENEDOR PRINCIPAL
    ========================================== */
 main {
-  max-width: 1000px;                    /* Limita el ancho para que no ocupe toda la pantalla */
-  margin: 30px auto;                    /* Centra el cuadro horizontalmente */
-  padding: 25px;                        /* Espacio interno entre el borde y el texto */
-  background: white;                    /* Fondo blanco para la tarjeta */
-  border-radius: 10px;                  /* Esquinas redondeadas */
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08); /* Sombra que le da el efecto flotante */
-  
-  animation: aparecer 0.8s ease-in-out; /* Animación de entrada al cargar */
+  max-width: 1000px;
+  width: 90%;
+  margin: 30px auto;
+  padding: 25px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  animation: aparecer 0.8s ease-in-out;
 }
 
-/* Animación de deslizamiento suave al abrir la página */
 @keyframes aparecer {
   from {
     opacity: 0;
@@ -97,12 +106,18 @@ p, ul {
 }
 
 /* ==========================================
-   4. TABLA DE MÉDICOS
+   4. TABLA RESPONSIVE
    ========================================== */
+.contenedor-tabla {
+  width: 100%;
+  overflow-x: auto;
+  margin-top: 15px;
+}
+
 table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 15px;
+  min-width: 500px; /* Evita que la tabla se colapse demasiado */
 }
 
 th, td {
@@ -121,23 +136,22 @@ tr:nth-child(even) {
 }
 
 /* ==========================================
-   5. GALERÍA DE IMÁGENES (CSS Grid)
+   5. GALERÍA DE IMÁGENES
    ========================================== */
-div:has(> img) {
-  display: grid; /* CSS Grid para la galería */
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+.galeria {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 15px;
 }
 
-img {
-  max-width: 100%;
-  height: auto;
+.galeria img {
   border-radius: 8px;
+  width: 100%;
+  object-fit: cover;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Efecto Hover en las imágenes */
-img:hover {
+.galeria img:hover {
   transform: scale(1.03);
   box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
@@ -145,21 +159,31 @@ img:hover {
 /* ==========================================
    6. FORMULARIO DE CONTACTO
    ========================================== */
+form label {
+  font-weight: bold;
+  display: block;
+  margin-top: 10px;
+}
+
 form input, form textarea {
   width: 100%;
-  padding: 10px;
+  padding: 12px;
+  margin-top: 5px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  font-size: 1rem;
 }
 
 button {
   background-color: var(--azul-principal);
   color: white;
-  padding: 10px 20px;
+  padding: 12px 20px;
   border: none;
   border-radius: 5px;
   font-size: 1rem;
   cursor: pointer;
+  width: 100%;
+  margin-top: 15px;
   transition: background-color 0.3s ease;
 }
 
@@ -174,110 +198,51 @@ footer {
   background-color: var(--azul-oscuro);
   color: white;
   text-align: center;
-  padding: 15px;
+  padding: 20px 15px;
   margin-top: 30px;
 }
 
-/* ==========================
-   DISEÑO RESPONSIVE
-========================== */
+/* ==========================================
+   8. MEDIA QUERIES (MÓVILES Y TABLETS)
+   ========================================== */
+@media screen and (max-width: 768px) {
+  header h1 {
+    font-size: 1.5rem;
+  }
 
-html{
-    scroll-behavior:smooth;
+  nav ul {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  nav a {
+    text-align: center;
+    width: 100%;
+    padding: 12px;
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  main {
+    width: 95%;
+    margin: 15px auto;
+    padding: 15px;
+  }
+
+  .galeria {
+    grid-template-columns: 1fr;
+  }
 }
 
-body{
-    overflow-x:hidden;
-}
+@media screen and (max-width: 480px) {
+  header h1 {
+    font-size: 1.3rem;
+  }
 
-img{
-    max-width:100%;
-    height:auto;
-}
+  h2 { font-size: 1.3rem; }
+  h3 { font-size: 1.1rem; }
+  h4 { font-size: 1rem; }
 
-table{
-    width:100%;
-    display:block;
-    overflow-x:auto;
-}
-
-input,
-textarea,
-button{
-    width:100%;
-}
-
-@media screen and (max-width:768px){
-
-header{
-    padding:20px;
-}
-
-header h1{
-    font-size:26px;
-}
-
-nav ul{
-    flex-direction:column;
-    align-items:center;
-    gap:10px;
-}
-
-nav li{
-    width:100%;
-}
-
-nav a{
-    display:block;
-    text-align:center;
-    width:100%;
-}
-
-main{
-    width:95%;
-    margin:15px auto;
-    padding:15px;
-}
-
-table{
-    font-size:14px;
-}
-
-div:has(> img){
-    grid-template-columns:1fr;
-}
-
-footer{
-    padding:20px;
-}
-
-}
-
-@media screen and (max-width:480px){
-
-header h1{
-    font-size:22px;
-}
-
-h2{
-    font-size:22px;
-}
-
-h3{
-    font-size:19px;
-}
-
-h4{
-    font-size:17px;
-}
-
-p,
-li{
-    font-size:15px;
-}
-
-button{
-    font-size:15px;
-}
-
+  p, li {
+    font-size: 0.95rem;
+  }
 }
